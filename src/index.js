@@ -5,20 +5,18 @@ import cats from "./cats.js";
 const server = http.createServer(async (req, res) => {
   let html;
 
-  if(req.method === "POST"){
-    let data = '';
+  if (req.method === "POST") {
+    let data = "";
 
-    req.on("data", chunk =>{
-        data += chunk.toString();
-    })
+    req.on("data", (chunk) => {
+      data += chunk.toString();
+    });
 
-    req.on('end', ()=>{
-        const searchParams = new URLSearchParams(data);
-        const newCat = Object.fromEntries(searchParams.entries);
-
-        
-    })
-}
+    req.on("end", () => {
+      const searchParams = new URLSearchParams(data);
+      const newCat = Object.fromEntries(searchParams.entries);
+    });
+  }
 
   switch (req.url) {
     case "/":
@@ -56,7 +54,12 @@ function readFile(path) {
 
 async function homeView() {
   const html = await readFile("./src/views/home/index.html");
-  const catsHTML = cats.map((cat) => catTemplate(cat)).join("\n");
+  let carsHTML = "";
+  if (cats.length > 0) {
+    catsHTML = cats.map((cat) => catTemplate(cat)).join("\n");
+  }else {
+    catsHTML = "<span>No cats added</span>"
+  }
   const result = html.replaceAll("{{cats}}", catsHTML);
 
   return result;
