@@ -2,4 +2,4 @@
 Softuni JavaScript Back-end Course Project
 
 ## Todo's
--  Start Node server
+-  Do the image upload as original
