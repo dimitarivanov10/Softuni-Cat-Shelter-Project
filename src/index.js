@@ -14,9 +14,18 @@ const server = http.createServer(async (req, res) => {
 
     req.on("end", () => {
       const searchParams = new URLSearchParams(data);
-      const newCat = Object.fromEntries(searchParams.entries);
+      const newCat = Object.fromEntries(searchParams.entries());
+      console.log(newCat);
+      cats.push(newCat);
+
+      res.writeHead(302, {
+        "location": "/"
+      });
+      // Instantly redirecting to home page after submitting a form
+    res.end();
     });
-  }
+    return;
+}
 
   switch (req.url) {
     case "/":
@@ -54,7 +63,7 @@ function readFile(path) {
 
 async function homeView() {
   const html = await readFile("./src/views/home/index.html");
-  let carsHTML = "";
+  let catsHTML = "";
   if (cats.length > 0) {
     catsHTML = cats.map((cat) => catTemplate(cat)).join("\n");
   }else {
