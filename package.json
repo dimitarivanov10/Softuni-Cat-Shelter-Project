@@ -1,0 +1,21 @@
+{
+  "name": "softuni-cat-shelter-project",
+  "version": "1.0.0",
+  "description": "Softuni JavaScript Back-end Course Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "Dimitar Ivanov",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimitarivanov10/Softuni-Cat-Shelter-Project.git"
+  },
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/dimitarivanov10/Softuni-Cat-Shelter-Project/issues"
+  },
+  "homepage": "https://github.com/dimitarivanov10/Softuni-Cat-Shelter-Project#readme"
+}
