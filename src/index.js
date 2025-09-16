@@ -1,5 +1,4 @@
 import http from "http";
-import homeCSS from "./home.css.js";
 import fs from "fs/promises";
 
 const server = http.createServer(async (req, res) => {
@@ -12,10 +11,12 @@ const server = http.createServer(async (req, res) => {
     
     res.write(homeHTML);
   } else if (req.url === "/styles/site.css") {
+    const sitesCSS = await fs.readFile("./src/styles/site.css", {encoding: "utf-8"});
     res.writeHead(200, {
       "content-type": "text/css",
     });
-    res.write(homeCSS);
+
+    res.write(sitesCSS);
   }
 
   res.end();
