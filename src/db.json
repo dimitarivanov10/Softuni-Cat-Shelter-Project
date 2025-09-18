@@ -44,23 +44,9 @@
     },
     {
       "id": 7,
-      "name": "RIcky",
-      "description": "Nooo trap monsters around him",
-      "imageUrl": "https://cdn.pixabay.com/photo/2019/11/08/11/56/kitten-4611189_640.jpg",
-      "breed": "Fluffy Cat"
-    },
-    {
-      "id": 8,
-      "name": "RIcky",
-      "description": "Nooo trap monsters around him",
-      "imageUrl": "https://cdn.pixabay.com/photo/2019/11/08/11/56/kitten-4611189_640.jpg",
-      "breed": "Fluffy Cat"
-    },
-    {
-      "id": 9,
-      "name": "RIcky",
-      "description": "Nooo trap monsters around him",
-      "imageURL": "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?cs=srgb&dl=pexels-pixabay-104827.jpg&fm=jpg",
+      "name": "Asap Rocky",
+      "description": "Real cat",
+      "imageURL": "https://marketplace.canva.com/8-1Kc/MAGoQJ8-1Kc/1/tl/canva-ginger-cat-with-paws-raised-in-air-MAGoQJ8-1Kc.jpg",
       "breed": "Fluffy Cat"
     }
   ],
