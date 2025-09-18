@@ -1,6 +1,6 @@
 import http from "http";
 import fs from "fs/promises";
-import {getCats, saveCat} from "./data.js";
+import { getCats, saveCat } from "./data.js";
 
 const server = http.createServer(async (req, res) => {
   let html;
@@ -12,19 +12,19 @@ const server = http.createServer(async (req, res) => {
       data += chunk.toString();
     });
 
-    req.on("end", async() => {
+    req.on("end", async () => {
       const searchParams = new URLSearchParams(data);
       const newCat = Object.fromEntries(searchParams.entries());
       await saveCat(newCat);
 
       res.writeHead(302, {
-        "location": "/"
+        location: "/",
       });
       // Instantly redirecting to home page after submitting a form
-    res.end();
+      res.end();
     });
     return;
-}
+  }
 
   switch (req.url) {
     case "/":
@@ -40,6 +40,7 @@ const server = http.createServer(async (req, res) => {
       const sitesCSS = await fs.readFile("./src/styles/site.css");
       res.writeHead(200, {
         "content-type": "text/css",
+        "cache-control": "max-age=10",
       });
       res.write(sitesCSS);
       res.end();
@@ -67,8 +68,8 @@ async function homeView() {
   let catsHTML = "";
   if (cats.length > 0) {
     catsHTML = cats.map((cat) => catTemplate(cat)).join("\n");
-  }else {
-    catsHTML = "<span>No cats added</span>"
+  } else {
+    catsHTML = "<span>No cats added</span>";
   }
   const result = html.replaceAll("{{cats}}", catsHTML);
 
