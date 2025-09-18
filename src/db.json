@@ -2,10 +2,10 @@
   "cats": [
     {
       "id": 1,
-      "imageURL": "https://d3544la1u8djza.cloudfront.net/APHI/Blog/2023/resources/Ragdoll.jpg",
-      "name": "Fluffy",
-      "breed": "Ragdoll",
-      "description": "Ragdolls are known for their silky fur and bright blue eyes. They possess friendly, dog-like personalities and are often described as 'puppy-like' due to their tendency to follow their owners around and enjoy being held."
+      "name": "RIcky",
+      "description": "Nooo trap monsters around him",
+      "imageURL": "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?cs=srgb&dl=pexels-pixabay-104827.jpg&fm=jpg",
+      "breed": "Fluffy Cat"
     },
     {
       "id": 2,
@@ -29,15 +29,38 @@
       "description": "Siamese cats are sleek and vocal, known for their striking blue eyes and short coat. They are intelligent, social, and thrive on attention and interaction, often engaging their humans in playful 'conversations'."
     },
     {
+      "id": 5,
       "name": "Sami",
-      "description": "DcAC",
+      "description": "Ginger cat",
       "imageURL": "https://static.vecteezy.com/system/resources/thumbnails/024/646/930/small_2x/ai-generated-stray-cat-in-danger-background-animal-background-photo.jpg",
       "breed": "Fluffy Cat"
     },
     {
+      "id": 6,
       "name": "Dimitar Ivanov",
       "description": "odsmjsv",
       "imageURL": "const dbSerialized = JSON.stringify(db, null, 2);",
+      "breed": "Fluffy Cat"
+    },
+    {
+      "id": 7,
+      "name": "RIcky",
+      "description": "Nooo trap monsters around him",
+      "imageUrl": "https://cdn.pixabay.com/photo/2019/11/08/11/56/kitten-4611189_640.jpg",
+      "breed": "Fluffy Cat"
+    },
+    {
+      "id": 8,
+      "name": "RIcky",
+      "description": "Nooo trap monsters around him",
+      "imageUrl": "https://cdn.pixabay.com/photo/2019/11/08/11/56/kitten-4611189_640.jpg",
+      "breed": "Fluffy Cat"
+    },
+    {
+      "id": 9,
+      "name": "RIcky",
+      "description": "Nooo trap monsters around him",
+      "imageURL": "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?cs=srgb&dl=pexels-pixabay-104827.jpg&fm=jpg",
       "breed": "Fluffy Cat"
     }
   ],

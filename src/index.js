@@ -1,6 +1,6 @@
 import http from "http";
 import fs from "fs/promises";
-import { getCats, saveCat } from "./data.js";
+import { editCat, getCat, getCats, saveCat } from "./data.js";
 
 const server = http.createServer(async (req, res) => {
   let html;
@@ -15,7 +15,13 @@ const server = http.createServer(async (req, res) => {
     req.on("end", async () => {
       const searchParams = new URLSearchParams(data);
       const newCat = Object.fromEntries(searchParams.entries());
-      await saveCat(newCat);
+
+      if (req.url === "/cats/add-cat") {
+        await saveCat(newCat);
+      } else if (req.url.startsWith("/cats/edit-cat")) {
+        const catId = getCatId(req.url);
+        await editCat(catId, newCat);
+      }
 
       res.writeHead(302, {
         location: "/",
@@ -26,28 +32,35 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  switch (req.url) {
-    case "/":
-      html = await homeView();
-      break;
-    case "/cats/add-breed":
-      html = await addBreedView();
-      break;
-    case "/cats/add-cat":
-      html = await addCatView();
-      break;
-    case "/styles/site.css":
-      const sitesCSS = await fs.readFile("./src/styles/site.css");
-      res.writeHead(200, {
-        "content-type": "text/css",
-        "cache-control": "max-age=10",
-      });
-      res.write(sitesCSS);
-      res.end();
-      return;
-    default:
-      return res.end();
+  if (req.url.startsWith("/cats/edit-cat")) {
+    const catId = getCatId(req.url);
+    html = await editCatView(catId);
+  } else {
+    switch (req.url) {
+      case "/":
+        html = await homeView();
+        break;
+      case "/cats/add-breed":
+        html = await addBreedView();
+        break;
+      case "/cats/add-cat":
+        html = await addCatView();
+        break;
+      case "/styles/site.css":
+        const sitesCSS = await fs.readFile("./src/styles/site.css");
+        res.writeHead(200, {
+          "content-type": "text/css",
+          "cache-control": "max-age=10",
+        });
+
+        res.write(sitesCSS);
+        res.end();
+        return;
+      default:
+        return res.end();
+    }
   }
+
   res.writeHead(200, {
     "content-type": "text/html",
   });
@@ -56,6 +69,12 @@ const server = http.createServer(async (req, res) => {
 
   res.end();
 });
+
+function getCatId(url) {
+  const segments = url.split("/");
+  const catId = Number(segments[3]);
+  return catId;
+}
 
 function readFile(path) {
   return fs.readFile(path, { encoding: "utf-8" });
@@ -86,6 +105,17 @@ async function addCatView() {
   return html;
 }
 
+async function editCatView(catId) {
+  const cat = await getCat(catId);
+
+  let html = await readFile("./src/views/editCat.html");
+  html = html.replaceAll("{{name}}", cat.name);
+  html = html.replaceAll("{{description}}", cat.description);
+  html = html.replaceAll("{{imageURL}}", cat.imageURL);
+
+  return html;
+}
+
 function catTemplate(cat) {
   return `
         <li>
@@ -94,7 +124,7 @@ function catTemplate(cat) {
                 <p><span>Breed: </span>${cat.breed}</p>
                 <p><span>Description: </span>${cat.description}</p>
                 <ul class="buttons">
-                    <li class="btn edit"><a href="">Change Info</a></li>
+                    <li class="btn edit"><a href="/cats/edit-cat/${cat.id}">Change Info</a></li>
                     <li class="btn delete"><a href="">New Home</a></li>
                 </ul>
         </li>
